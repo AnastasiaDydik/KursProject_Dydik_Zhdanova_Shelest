@@ -1,0 +1,47 @@
+﻿@model Kurs.Admin.Models.ProcessorViewModel
+
+@{
+    ViewBag.Title = "Просмотр процессора";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Просмотр процессора</h2>
+
+<div>
+    <h4>Процессор</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cores)
+        </dd>
+
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Frequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Frequency)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Назад", "Index")
+</p>

@@ -1,0 +1,35 @@
+﻿@model Kurs.Admin.Models.OperatingSystemViewModel
+
+@{
+    ViewBag.Title = "Удалить операционную систему";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Удалить операционную систему</h2>
+
+<h3>Вы уверены, что хотите удалить этот элемент?</h3>
+<div>
+    <h4>Операционная система</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Title)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

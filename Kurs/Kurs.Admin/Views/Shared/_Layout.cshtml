@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+</head>
+<body>
+
+
+    <div class="shell">
+        <!-- Header -->
+        <div id="header">
+            <h1 id="logo"><a href="/">shoparound</a></h1>
+
+            <div id="cart">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span>@User.Identity.Name</span> <a class="cart-link" href="/account/logoff" style="background: none; padding: 0;">Выйти</a>
+                }
+                else
+                {
+                    <a href="/account/login" style="color:#fff; font-size: 14px;">Войти</a>  <a href = "/account/register" style = "color:#fff; font-size: 14px;" > Регистрация </a>
+                }
+   
+            </div>
+
+            <!-- Navigation -->
+            <div id="navigation">
+                <ul>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li><a href="#">Поддержка</a></li>
+                </ul>
+            </div>
+            <!-- End Navigation -->
+        </div>
+        <!-- End Header -->
+        <!-- Main -->
+        <div id="main">
+            <div class="cl">&nbsp;</div>
+
+            <!-- Content -->
+            <div id="content">
+                @RenderBody()
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar">
+
+                <!-- Search -->
+                @Html.Action("Filter", "Home")
+                <!-- End Search -->
+                <!-- Categories -->
+                <div class="box categories">
+                    @Html.Action("Categories", "Home")
+
+                    <h2>Имена таблиц<span></span></h2>
+                    <div class="box-content">
+                        <ul>
+                            <li>@Html.ActionLink("Категории", "Index", "Categories")</li>
+                            <li>@Html.ActionLink("Цвета", "Index", "Colors")</li>
+                            <li>@Html.ActionLink("Страны", "Index", "Countries")</li>
+                            <li>@Html.ActionLink("Консультанты", "Index", "Consultants")</li>
+                            <li>@Html.ActionLink("Устройства", "Index", "Devices")</li>
+                            <li>@Html.ActionLink("Цифровые камеры", "Index", "DigitalCameras")</li>
+                            <li>@Html.ActionLink("Производители", "Index", "Makers")</li>
+                            <li>@Html.ActionLink("Операционные системы", "Index", "OperatingSystems")</li>
+                            <li>@Html.ActionLink("Процессоры", "Index", "Processors")</li>
+                            <li>@Html.ActionLink("Разрешения экрана", "Index", "ScreenResolutions")</li>
+                            <li>@Html.ActionLink("Отзывы", "Index", "Reviews")</li>
+                        </ul>
+                    </div>
+                    <h2>Действия<span></span></h2>
+                    <div class="box-content">
+                        <ul>
+                            <li class="last"><a href="/statistic">Статистика</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Categories -->
+
+            </div>
+            <!-- End Sidebar -->
+            <!-- Footer -->
+        </div>
+
+
+
+        <div class="cl">&nbsp;</div>
+        <div id="footer">
+            <p class="left">
+                <a href="#">Home</a>
+                <span>|</span>
+                <a href="#">Поддержка</a>
+            </p>
+            <p class="right">
+                &copy; 2010 Shop Around.
+                Design by
+            </p>
+        </div>
+        <!-- End Footer -->
+    </div>
+
+    <!--<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>Html.ActionLink("About", "About", "Home")</li>
+                    <li>Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>-->
+
+    @Scripts.Render("~/bundles/jquery")
+    <!-- JS -->
+    <script src="~/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.jcarousel.pack.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-func.js" type="text/javascript"></script>
+    <!-- End JS -->
+    @RenderSection("scripts", required: false)
+</body>
+</html>

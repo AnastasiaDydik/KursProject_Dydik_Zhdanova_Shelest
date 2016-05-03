@@ -1,0 +1,37 @@
+﻿@model Kurs.Admin.Models.DigitalCameraViewModel
+
+@{
+    ViewBag.Title = "Просмотр цифровой камеры";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Просмотр цифровой камеры</h2>
+
+<div>
+    <h4>Цифровая камера</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Width)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Назад", "Index")
+</p>
