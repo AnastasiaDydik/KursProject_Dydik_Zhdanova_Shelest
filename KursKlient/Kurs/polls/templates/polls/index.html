@@ -1,0 +1,30 @@
+{% extends "polls/_layout.html" %}
+
+{% block content %}
+    {% include "polls/_slider.html" %}
+<!-- Products -->
+			<div class="products">
+				<div class="cl">&nbsp;</div>
+                {% if devices %}
+                <ul>
+                    {% for device in devices %}
+                        <li>
+				    	<a href="/device/{{ device.Id }}"><img src="{{ device.Image }}" alt="" /></a>
+				    	<div class="product-info">
+				    		<h3>{{ device.Model }}</h3>
+				    		<div class="product-desc">
+				    			<p>Осталось:{{ device.FreeCount }}<br />Всего:{{ device.TotalCount }}</p>
+				    			<strong class="price">{{ device.Price }}</strong>
+				    		</div>
+				    	</div>
+			    	</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>No polls are available.</p>
+                {% endif %}
+
+				<div class="cl">&nbsp;</div>
+			</div>
+			<!-- End Products -->
+{% endblock %}

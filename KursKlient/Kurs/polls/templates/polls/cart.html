@@ -1,0 +1,24 @@
+{% extends "polls/_layout.html" %}
+
+{% block content %}
+    <h1>Корзина Ваших товаров</h1>
+    {% if cart_devices %}
+    <table class="order-table">
+    <tr>
+        <th>Название</th>
+        <th>Количество</th>
+        <th>Стоимость</th>
+        <th>Действия</th>
+    </tr>
+        {% for cart_device in cart_devices %}
+            <tr>
+                <td>{{ cart_device.Name }}</td>
+                <td>{{ cart_device.Quantity }}</td>
+                <td>{{ cart_device.Price }}</td>
+                <td><a href="/delete_from_cart/{{ cart_device.Id }}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+<a href="/pay">Оплатить</a>
+{% endblock %}

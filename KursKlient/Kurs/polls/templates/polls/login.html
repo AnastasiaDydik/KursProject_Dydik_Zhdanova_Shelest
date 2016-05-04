@@ -1,0 +1,15 @@
+{% extends "polls/_layout.html" %}
+{% block content %}
+    <h1>Авторизация пользователя</h1>
+    <h2>{{ error }}</h2>
+    <form action="/login" method="post">
+    {% csrf_token %}
+         <table>
+             <tr><td>Логин:</td><td><input type="text" name="username" value="{{ username }}" required="required"/></td></tr>
+             <tr><td>Пароль:</td><td><input type="password" name="password" value="{{ password }}" required="required"/></td></tr>
+             <tr><td></td><td><input type="submit" value="Войти" /></td></tr>
+         </table>
+
+
+    </form>
+{% endblock %}

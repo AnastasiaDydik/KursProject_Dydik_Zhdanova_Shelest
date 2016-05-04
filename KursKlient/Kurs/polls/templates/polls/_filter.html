@@ -1,0 +1,29 @@
+<h2>Поиск по:<span></span></h2>
+				<div class="box-content">
+					<form action="/" method="get">
+
+						<label>Ключевое слово</label>
+						<input type="text" class="field" name="keyword" />
+
+						<label>Категория</label>
+						<select class="field" name="category">
+							<option value="">-- Выберите категорию --</option>
+                            {% if categories %}
+                                {% for category in categories %}
+                                    <option value="{{ category.Id }}">{{ category.Title }}</option>
+                                {% endfor %}
+                            {% endif %}
+						</select>
+
+						<div class="inline-field">
+							<label>Цена от:</label>
+                            <input type="text" class="field small-field" name="minPrice" />
+
+							<label>по:</label>
+							<input type="text" class="field small-field" name="maxPrice" />
+						</div>
+
+						<input type="submit" class="search-submit" value="Поиск" />
+
+					</form>
+				</div>

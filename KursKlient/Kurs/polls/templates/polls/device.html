@@ -1,0 +1,123 @@
+
+{% extends "polls/_layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<h1>Подробная инфорация {{ device.Model }}</h1>
+<br />
+<div class="col col_13">
+    <img src="{{ device.Image }}" width="230px" />
+</div>
+<div class="col col_13 no_margin_right" style="width: 330px;">
+    <div class="teh-config">
+	    <div id="teh-other">
+		    <div class="left">
+			    <div class="config-block">
+				    <div>
+					    <b>Габариты</b>
+                    </div>
+					<div style="padding-right: 40px; padding-left: 20px;" class="right">
+					    <div class="config-block">
+					        <div>Высота : {{ device.Heigth }} (мм)</div>
+					        <div>Ширина : {{ device.Width }} (мм)</div>
+						    <br></br>
+						</div>
+					</div>
+				</div>
+            </div>
+            <a href="/add_to_cart?device_id={{ device.Id }}"><img src="{% static 'polls/css/images/ico4.gif' %}"/> Добавить в корзину</a>
+
+            <div class="left">
+			    <div class="config-block">
+				    <div>
+					    <b>Дисплей</b>
+					</div>
+				    <div style="padding-right: 40px; padding-left: 20px;" class="right">
+					    <div class="config-block">
+							<div>Высота : {{ screen.Height }} (px)</div>
+							<div>Ширина : {{ screen.Width }} (px)</div>
+							<div>Диагональ : {{ screen.Diagonal }} (дюймов)</div>
+							<br></br>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div class="left">
+			    <div class="config-block">
+				    <div>
+					    <b>Операционаая система</b>
+					</div>
+					<div style="padding-right: 40px; padding-left: 20px;" class="right">
+						<div class="config-block">
+						    <div>: {{ os.Title }} </div>
+							<br/>
+						</div>
+                    </div>
+                </div>
+            </div>
+			<div class="left">
+			    <div class="config-block">
+					<div>
+					    <b>Процессор</b>
+                    </div>
+				    <div style="padding-right: 40px; padding-left: 20px;" class="right">
+				        <div class="config-block">
+					        <div>: {{ processor.Title }} </div>
+							<div>Количество ядер : {{ processor.Cores }} (шт)</div>
+							<div>Частота : {{ processor.Frequency }} (МГц)</div>
+							<br/>
+						</div>
+					</div>
+				</div>
+            </div>
+			<div class="left">
+				<div class="config-block">
+					<div>
+						<b>Камера</b>
+					</div>
+				    <div style="padding-right: 40px; padding-left: 20px;" class="right">
+					    <div class="config-block">
+						    <div>Высота: {{ camera.Height }} (мм)</div>
+						    <div>Ширина : {{ camera.Width }} (мм)</div>
+						    <br/>
+					    </div>
+				    </div>
+                </div>
+			</div>
+			<div class="left">
+				<div class="config-block">
+					<div>
+						<b>Прочее</b>
+					</div>
+				    <div style="padding-right: 40px; padding-left: 20px;" class="right">
+						<div class="config-block">
+							<div>Тип устройства: {{ category.Title }} </div>
+							<div>Цена : {{ device.Price }}</div>
+							<div>Цвет : {{ color.Title }} </div>
+							<div>Фирма производитель : {{ maker.Title }} </div>
+							<div>Страна производитель : {{ country.Title }} </div>
+							<div>Оперативная память: {{ device.Ram }} (Мб)</div>
+							<div>Встроенная память : {{ device.Memory }} (Мб)</div>
+							<br/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="cleaner h20"></div>
+
+</div>
+<div class="" style="float: right; width: 100%">
+<h2>Отзывы</h2>
+    {% if reviews %}
+        <ul style="padding-left: 10px">
+            {% for review in reviews %}
+                <li style="padding-top: 10px">{{ review.Content }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+				<br />
+{% endblock %}

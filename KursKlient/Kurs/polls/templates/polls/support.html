@@ -1,0 +1,24 @@
+{% extends "polls/_layout.html" %}
+
+{% block content %}
+<h1>Список консультантов</h1>
+    <div style="padding-top: 30px;">
+    {% if consultants %}
+
+        {% for consultant in consultants %}
+            <div style="padding-bottom: 10px;">
+                <h2>{{ consultant.Name }}</h2>
+                <table>
+                    <tr>
+                        <td>Номер телефона:</td><td><a href="callto:{{ consultant.PhoneNumber }}">{{ consultant.PhoneNumber }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td><td><a href="mailto:{{ consultant.Email }}">{{ consultant.Email }}</a></td>
+                    </tr>
+                </table>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+    </div>
+{% endblock %}

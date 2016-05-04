@@ -1,0 +1,10 @@
+<h2>Категории<span></span></h2>
+<div class="box-content">
+    <ul>
+        {% if categories %}
+            {% for category in categories %}
+                <li><a href="/?category={{ category.Id }}">{{ category.Title }}</a></li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
