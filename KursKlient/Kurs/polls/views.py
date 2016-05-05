@@ -121,4 +121,64 @@ def device(request, id):
     context['categories'] = categories
 
     return render(request, 'polls/device.html', context)
+def support(request):
+    context = {}
+    if request.user.is_authenticated():
+        context['is_auth'] = True
+        cart_preview = calculate_cart_preview(request.user.id)
+        context['in_cart'] = cart_preview['in_cart']
+        context['cart_price'] = cart_preview['cart_price']
+    else:
+        context['is_auth'] = False
+
+    response = requests.get(api_url+"Consultants")
+    consultants = response.json()
+    response = requests.get(api_url+"Categories")
+    categories = response.json()
+
+    context['consultants'] = consultants
+    context['categories'] = categories
+
+    return render(request, 'polls/support.html', context)
+
+
+def login(request):
+    context = {}
+    response = requests.get(api_url+"Categories")
+    categories = response.json()
+    context['categories'] = categories
+    if request.user.is_authenticated():
+        context['is_auth'] = True
+        cart_preview = calculate_cart_preview(request.user.id)
+        context['in_cart'] = cart_preview['in_cart']
+        context['cart_price'] = cart_preview['cart_price']
+    else:
+        context['is_auth'] = False
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is None:
+            context['username'] = username
+            context['password'] = password
+            context['error'] = 'Не верно введен логин или пароль'
+            return render(request, 'polls/login.html', context)
+
+        else:
+            l(request, user)
+        return redirect('polls.views.index')
+
+    else:
+        context['username'] = ''
+        context['password'] = ''
+        context['error'] = ''
+        return render(request, 'polls/login.html')
+
+
+def logout(request):
+    lout(request)
+    return redirect('polls.views.index')
+
 
