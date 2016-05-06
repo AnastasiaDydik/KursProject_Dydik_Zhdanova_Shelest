@@ -242,3 +242,37 @@ def delete_from_cart(request, id):
     return redirect('polls.views.cart')
 
 
+
+
+@login_required
+def pay(request):
+    cart_devices = []
+    carts_url = api_url+"Carts?userId=%s" % request.user.id
+    response = requests.get(carts_url)
+    carts = response.json()
+
+    for cart_obj in carts:
+        cart_obj['IsSold'] = True
+        update_carts_url = api_url+"Carts/%s" % cart_obj['Id']
+        responce = requests.put(update_carts_url, data=cart_obj)
+
+    return redirect('polls.views.cart')
+
+
+def calculate_cart_preview(user_id):
+    result = {}
+
+    carts_url = api_url+"Carts?userId=%s" % user_id
+    response = requests.get(carts_url)
+    carts = response.json()
+    result['in_cart'] = len(carts)
+    price = 0
+    for cart_obj in carts:
+        device_url = api_url+"Devices/%s" % cart_obj['DeviceId']
+        response = requests.get(device_url)
+        device_obj = response.json()
+        price = price + cart_obj['Quantity'] * device_obj['Price']
+
+    result['cart_price'] = price
+
+    return result
