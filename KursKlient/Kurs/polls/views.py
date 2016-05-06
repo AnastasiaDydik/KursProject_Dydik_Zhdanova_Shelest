@@ -181,4 +181,64 @@ def logout(request):
     lout(request)
     return redirect('polls.views.index')
 
+@login_required
+def add_to_cart(request):
+    user_id = request.user.id
+    device_id = request.GET['device_id']
+
+    api_request = {'Id': 0, 'UserId': user_id, 'DeviceId': device_id, 'Quantity': 1, 'IsSold': False}
+    response = requests.post(api_url+"Carts", data=api_request)
+    cart = response.json()
+    if cart['Id'] > 0:
+        device_url = api_url+"Devices/%s" % cart['DeviceId']
+        response = requests.get(device_url)
+        device = response.json()
+        device['FreeCount'] = device['FreeCount'] - 1
+        responce = requests.put(device_url, data=device)
+    return redirect('polls.views.index')
+
+
+@login_required
+def cart(request):
+    context = {}
+    context['is_auth'] = True
+
+    cart_preview = calculate_cart_preview(request.user.id)
+    context['in_cart'] = cart_preview['in_cart']
+    context['cart_price'] = cart_preview['cart_price']
+
+    cart_devices = []
+    carts_url = api_url+"Carts?userId=%s" % request.user.id
+    response = requests.get(carts_url)
+    carts = response.json()
+    for cart_object in carts:
+        device_url = api_url+"Devices/%s" % cart_object['DeviceId']
+        response = requests.get(device_url)
+        device_object = response.json()
+        cart_device = {'Name': device_object['Model'], 'Quantity': cart_object['Quantity'],
+                       'Price': cart_object['Quantity'] * device_object['Price'], 'Id': cart_object['Id']}
+        cart_devices.append(cart_device)
+
+    context['cart_devices'] = cart_devices
+    response = requests.get(api_url+"Categories")
+    categories = response.json()
+    context['categories'] = categories
+
+    return render(request, 'polls/cart.html', context=context)
+
+
+@login_required
+def delete_from_cart(request, id):
+    delete_cart_url = api_url+"Carts/%s" % id
+    response = requests.delete(delete_cart_url)
+    cart_object = response.json()
+
+    device_url = api_url+"Devices/%s" % cart_object['DeviceId']
+    response = requests.get(device_url)
+    device_object = response.json()
+    device_object['FreeCount'] = device_object['FreeCount'] + 1
+    responce = requests.put(device_url, data=device_object)
+
+    return redirect('polls.views.cart')
+
 
