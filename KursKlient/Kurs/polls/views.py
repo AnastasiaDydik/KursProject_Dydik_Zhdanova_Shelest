@@ -121,6 +121,8 @@ def device(request, id):
     context['categories'] = categories
 
     return render(request, 'polls/device.html', context)
+
+
 def support(request):
     context = {}
     if request.user.is_authenticated():
@@ -180,6 +182,7 @@ def login(request):
 def logout(request):
     lout(request)
     return redirect('polls.views.index')
+
 
 @login_required
 def add_to_cart(request):
@@ -242,8 +245,6 @@ def delete_from_cart(request, id):
     return redirect('polls.views.cart')
 
 
-
-
 @login_required
 def pay(request):
     cart_devices = []
@@ -276,3 +277,58 @@ def calculate_cart_preview(user_id):
     result['cart_price'] = price
 
     return result
+
+
+def register(request):
+    context = {}
+    if request.user.is_authenticated():
+        context['is_auth'] = True
+        cart_preview = calculate_cart_preview(request.user.id)
+        context['in_cart'] = cart_preview['in_cart']
+        context['cart_price'] = cart_preview['cart_price']
+    else:
+        context['is_auth'] = False
+
+    response = requests.get(api_url+"Categories")
+    categories = response.json()
+    context['categories'] = categories
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        repeat_password = request.POST['repeat_password']
+        context['username'] = username
+        context['password'] = password
+        context['repeat_password'] = repeat_password
+
+        user_url = api_url+"Users/0/?name=%s" % username
+        response = requests.get(user_url)
+
+        if response.status_code != 404:
+            context['error'] = 'Пользователь с таким именем уже добавлен'
+            return render(request, 'polls/register.html', context)
+
+        if password != repeat_password:
+            context['error'] = 'Пароли не совпатают'
+            return render(request, 'polls/register.html', context)
+
+        user = {'Id': 0, 'Name': username, 'Password': password}
+
+        create_user_url = api_url+"Users"
+        response = requests.post(create_user_url, data=user)
+        user = response.json()
+
+        if user['Id'] < 1:
+            context['error'] = 'Не удалось создать пользователя'
+            return render(request, 'polls/register.html', context)
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            l(request, user)
+
+            return redirect('polls.views.index')
+    else:
+        return render(request, 'polls/register.html')
+
+
