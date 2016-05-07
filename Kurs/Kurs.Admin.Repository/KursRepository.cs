@@ -11,6 +11,7 @@ namespace Kurs.Admin.Repository
         public KursRepository()
         {
             RestClient = new RestClient("http://kursproj-001-site1.itempurl.com/");
+            //RestClient = new RestClient("http://localhost:62164/");
 
         }
 
@@ -796,6 +797,133 @@ namespace Kurs.Admin.Repository
         {
 
         }
+        #endregion
+
+
+        #region Role regio
+
+        public IEnumerable<Role> Roles {
+            get
+            {
+                var request = new RestRequest("api/Roles", Method.GET);
+                request.RequestFormat = DataFormat.Json;
+                var responce = RestClient.Execute<List<Role>>(request);
+                return responce.Data;
+            }
+        }
+
+        public Role FindRoleById(int id)
+        {
+            var request = new RestRequest("api/Roles/{id}", Method.GET);
+            request.RequestFormat = DataFormat.Json;
+            request.AddUrlSegment("id", id.ToString());
+            var responce = RestClient.Execute<Role>(request);
+
+            return responce.Data;
+        }
+
+        public Role FindRoleByName(string name)
+        {
+            var request = new RestRequest("api/Roles/{id}?name={name}", Method.GET);
+            request.RequestFormat = DataFormat.Json;
+            request.AddUrlSegment("id", "0");
+            request.AddUrlSegment("name", name);
+            var responce = RestClient.Execute<Role>(request);
+
+            return responce.Data;
+        }
+
+        public Role Create(Role role)
+        {
+            var request = new RestRequest("api/Roles", Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            request.AddBody(role);
+
+            var responce = RestClient.Execute<Role>(request);
+
+            return responce.Data;
+        }
+
+        public bool Delete(Role role)
+        {
+            var request = new RestRequest("api/Roles/{id}", Method.DELETE);
+            request.RequestFormat = DataFormat.Json;
+            request.AddUrlSegment("id", role.Id.ToString());
+            var responce = RestClient.Execute(request);
+
+            if (responce.ResponseStatus == ResponseStatus.Completed)
+            {
+                role = null;
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool Update(int id, Role role)
+        {
+            var request = new RestRequest("api/Roles/{id}", Method.PUT);
+            request.RequestFormat = DataFormat.Json;
+            request.AddUrlSegment("id", id.ToString());
+            request.AddBody(role);
+
+            var responce = RestClient.Execute(request);
+
+            return responce.ResponseStatus == ResponseStatus.Completed;
+        }
+        #endregion
+
+        #region UserRole region
+
+        public IEnumerable<UserRole> UserRoles {
+            get
+            {
+                var request = new RestRequest("api/UserRoles", Method.GET);
+                request.RequestFormat = DataFormat.Json;
+                var responce = RestClient.Execute<List<UserRole>>(request);
+                return responce.Data;
+            }
+        }
+
+        public UserRole FindUserRoleById(int userId, int roleId)
+        {
+            var request = new RestRequest("api/UserRoles/{id}?roleId={roleId}", Method.GET);
+            request.RequestFormat = DataFormat.Json;
+            request.AddUrlSegment("id", userId.ToString());
+            request.AddUrlSegment("roleId", roleId.ToString());
+            var responce = RestClient.Execute<UserRole>(request);
+
+            return responce.Data;
+        }
+
+        public UserRole Create(UserRole userRole)
+        {
+            var request = new RestRequest("api/UserRoles", Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            request.AddBody(userRole);
+
+            var responce = RestClient.Execute<UserRole>(request);
+
+            return responce.Data;
+        }
+
+        public bool Delete(UserRole userRole)
+        {
+            var request = new RestRequest("api/UserRoles/{id}?roleId={roleId}", Method.DELETE);
+            request.RequestFormat = DataFormat.Json;
+            request.AddUrlSegment("id", userRole.UserId.ToString());
+            request.AddUrlSegment("roleId", userRole.RoleId.ToString());
+            var responce = RestClient.Execute(request);
+
+            if (responce.ResponseStatus == ResponseStatus.Completed)
+            {
+                userRole = null;
+                return true;
+            }
+
+            return false;
+        }
+
         #endregion
 
     }

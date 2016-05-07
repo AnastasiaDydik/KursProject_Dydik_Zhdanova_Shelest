@@ -174,5 +174,31 @@ namespace Kurs.Admin.Repository
         #endregion
 
 
+        #region Role region
+
+        IEnumerable<Role> Roles { get; }
+
+        Role FindRoleById(int id);
+
+        Role FindRoleByName(string name);
+
+        Role Create(Role role);
+
+        bool Delete(Role role);
+
+        bool Update(int id, Role role);
+        #endregion
+
+        #region UserRole region
+
+        IEnumerable<UserRole> UserRoles { get; }
+
+        UserRole FindUserRoleById(int userId, int roleId);
+
+        UserRole Create(UserRole userRole);
+
+        bool Delete(UserRole userRole);
+        
+        #endregion
     }
 }

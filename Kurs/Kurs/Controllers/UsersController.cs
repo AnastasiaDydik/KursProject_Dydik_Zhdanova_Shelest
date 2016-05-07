@@ -144,6 +144,9 @@ namespace Kurs.Controllers
                 Name = user.Name,
                 Password = user.Password
             };
+            var userCarts = db.Carts.Where(it => it.UserId == user.Id);
+            user.Roles.Clear();
+            db.Carts.RemoveRange(userCarts);
             db.Users.Remove(user);
             db.SaveChanges();
 

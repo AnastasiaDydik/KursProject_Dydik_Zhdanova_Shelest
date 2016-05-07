@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Kurs.Admin.Controllers
 {
+    [Authorize(Roles = "Администратор")]
     public class OperatingSystemsController : Controller
     {
         IKursRepository Repository;

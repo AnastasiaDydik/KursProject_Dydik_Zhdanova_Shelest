@@ -77,23 +77,23 @@ namespace Kurs.Admin.Controllers
                 return View(model);
             }
 
-            var user = Repository.FindUserByName(model.Email);
-            if(user != null && user.Password == model.Password)
+            // Sign in the user with this external login provider if the user already has a login
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
+            switch (result)
             {
-                var kursUser = new KursUser
-                {
-                    Id = user.Id.ToString(),
-                    Password = user.Password,
-                    UserName = user.Name
-                };
-
-                await SignInManager.SignInAsync(kursUser, true, false);
-
-                return RedirectToAction("Index", "Home");
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                case SignInStatus.Failure:
+                default:
+                    // If the user does not have an account, then prompt the user to create an account
+                    ViewBag.ReturnUrl = returnUrl;
+                    ModelState.AddModelError("", "Попытка входа не удалясь");
+                    return View(model);
             }
-
-            ModelState.AddModelError("", "Invalid login attempt.");
-            return View(model);
         }
 
         //

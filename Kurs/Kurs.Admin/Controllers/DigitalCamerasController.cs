@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace Kurs.Admin.Controllers
 {
+    [Authorize(Roles = "Администратор")]
     public class DigitalCamerasController : Controller
     {
         IKursRepository Repository;

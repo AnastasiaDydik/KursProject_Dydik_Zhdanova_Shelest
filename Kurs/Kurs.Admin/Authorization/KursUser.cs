@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace Kurs.Admin.Authorization
 {
@@ -32,5 +27,6 @@ namespace Kurs.Admin.Authorization
             // Add custom user claims here
             return userIdentity;
         }*/
+
     }
 }
