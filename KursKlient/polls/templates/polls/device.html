@@ -25,6 +25,7 @@
 					</div>
 				</div>
             </div>
+
             <a href="/add_to_cart?device_id={{ device.Id }}"><img src="{% static 'polls/css/images/ico4.gif' %}"/> Добавить в корзину</a>
 
             <div class="left">
@@ -104,6 +105,20 @@
 					</div>
 				</div>
 			</div>
+             <div class="left">
+			    <div class="config-block">
+				    <div>
+					    <b>Описание</b>
+                    </div>
+					<div style="padding-right: 40px; padding-left: 20px;" class="right">
+					    <div class="config-block">
+					        <div>{{ device.Info }}</div>
+
+						    <br></br>
+						</div>
+					</div>
+				</div>
+            </div>
 		</div>
 	</div>
 <div class="cleaner h20"></div>
@@ -118,6 +133,11 @@
             {% endfor %}
         </ul>
     {% endif %}
+
+<br />
+ {% include "polls/_add_review.html" %}
 </div>
 				<br />
+
+
 {% endblock %}

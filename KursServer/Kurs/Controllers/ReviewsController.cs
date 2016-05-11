@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Kurs.Storage;
+using System.Text;
 
 namespace Kurs.Controllers
 {
@@ -89,6 +90,8 @@ namespace Kurs.Controllers
             {
                 return BadRequest(ModelState);
             }
+            //byte[] bytes = Encoding.Default.GetBytes(model.Content);
+            //model.Content = Encoding.UTF8.GetString(bytes);
             var review = new Review
             {
                 Id = model.Id,
@@ -110,6 +113,7 @@ namespace Kurs.Controllers
             {
                 return NotFound();
             }
+
             var model = new Kurs.Admin.Repository.Review
             {
                 Id = review.Id,

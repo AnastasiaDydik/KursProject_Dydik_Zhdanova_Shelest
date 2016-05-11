@@ -106,6 +106,12 @@ namespace Kurs.Admin
             return manager;
         }
 
+        public override async Task<bool> IsInRoleAsync(string userId, string role)
+        {
+            var user = await store.FindByIdAsync(userId);
+            return await store.IsInRoleAsync(user, role);
+        }
+
     }
 
     // Configure the application sign-in manager which is used in this application.
@@ -124,8 +130,13 @@ namespace Kurs.Admin
         public override async Task<SignInStatus> PasswordSignInAsync(string userName, string password, bool isPersistent, bool shouldLockout)
         {
             var user = UserManager.FindByName(userName);
+            
             if (user == null)
                 return SignInStatus.Failure;
+            var isAdmin = UserManager.IsInRole(user.Id.ToString(), "Администратор");
+            if (!isAdmin)
+                return SignInStatus.Failure;
+
             if (user.Password == password)
             {
                 await SignInAsync(user, isPersistent, true);

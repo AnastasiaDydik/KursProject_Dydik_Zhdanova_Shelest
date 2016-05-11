@@ -4,7 +4,8 @@ from django.contrib.auth import authenticate, login as l, logout as lout
 from django.contrib.auth.decorators import login_required
 import requests
 
-api_url = "http://kursproj-001-site1.itempurl.com/api/"
+# api_url = "http://kursproj-001-site1.itempurl.com/api/"
+api_url = "http://localhost:62164/api/"
 
 def index(request):
     context = {}
@@ -258,6 +259,17 @@ def pay(request):
         responce = requests.put(update_carts_url, data=cart_obj)
 
     return redirect('polls.views.cart')
+
+
+@login_required
+def add_review(request):
+    carts_url = api_url + "Reviews"
+    device_id = request.POST['device_id']
+    review = request.POST['review']
+
+    review = {"Id": 0, "DeviceId": device_id, "Content": review}
+    response = requests.post(carts_url, data=review)
+    return redirect('polls.views.index')
 
 
 def calculate_cart_preview(user_id):

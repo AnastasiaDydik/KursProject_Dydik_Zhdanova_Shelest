@@ -1,0 +1,14 @@
+
+<h2 style="width: 100%;">Добавить отзыв</h2>
+<form method="post" action="/add_review">
+    {% csrf_token %}
+    <input type="hidden" name="device_id" value="{{ device.Id }}"/>
+    <div class="inline-field">
+        <labe>Отзыв:</labe>
+        <textarea name="review"></textarea>
+    </div>
+    <div class="inline-field">
+       <input type="submit" class="search-submit" value="Добавить" />
+    </div>
+
+</form>

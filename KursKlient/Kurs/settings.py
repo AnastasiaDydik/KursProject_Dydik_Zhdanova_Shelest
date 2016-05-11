@@ -56,7 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            'j:/KursKlient/Kurs/polls/templates'
+            'C:/Repository/Python/Kurs/Kurs/polls/templates'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -119,7 +119,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = 'j:/KursKlient/Kurs/polls/static/'
+STATIC_ROOT = 'C:/Repository/Python/Kurs/Kurs/polls/static/'
 STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = ['Kurs.custom_authentication_backend.KursAuthBackend']

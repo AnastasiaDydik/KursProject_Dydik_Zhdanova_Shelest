@@ -109,7 +109,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DeviceId" Type="Int32" Nullable="false" />
-    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Device" Relationship="Kurs.Storage.FK_Reviews_ToDevices" FromRole="Review" ToRole="Device" />
   </EntityType>
   <EntityType Name="ScreenResolution">

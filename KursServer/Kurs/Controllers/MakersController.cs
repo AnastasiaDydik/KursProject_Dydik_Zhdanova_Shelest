@@ -53,7 +53,7 @@ namespace Kurs.Controllers
                 return BadRequest();
             }
             var maker = db.Makers.Find(model.Id);
-            maker.Title = maker.Title;
+            maker.Title = model.Title;
             db.Entry(maker).State = EntityState.Modified;
 
             try

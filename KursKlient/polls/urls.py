@@ -12,6 +12,6 @@ urlpatterns = [
     url(r'^cart$', views.cart, name='cart'),
     url(r'^delete_from_cart/(?P<id>[0-9]+)$', views.delete_from_cart, name='delete_from_cart'),
     url(r'^pay$', views.pay, name='pay'),
-    url(r'^register$', views.register, name='register')
-
+    url(r'^register$', views.register, name='register'),
+    url(r'^add_review$', views.add_review, name="add_review")
 ]

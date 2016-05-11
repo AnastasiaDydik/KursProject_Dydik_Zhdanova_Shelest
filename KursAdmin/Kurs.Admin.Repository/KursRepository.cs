@@ -10,8 +10,8 @@ namespace Kurs.Admin.Repository
 
         public KursRepository()
         {
-            RestClient = new RestClient("http://kursproj-001-site1.itempurl.com/");
-            //RestClient = new RestClient("http://localhost:62164/");
+            //RestClient = new RestClient("http://kursproj-001-site1.itempurl.com/");
+            RestClient = new RestClient("http://localhost:62164/");
 
         }
 

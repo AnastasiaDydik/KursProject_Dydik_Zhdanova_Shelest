@@ -314,7 +314,7 @@ namespace Kurs.Admin.Authorization
                 if(role != null)
                 {
                     var userRole = Repository.FindUserRoleById(int.Parse(user.Id), role.Id);
-                    return userRole == null;
+                    return userRole != null;
                 }
                 return false;
             });

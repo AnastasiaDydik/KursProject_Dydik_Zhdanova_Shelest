@@ -24,9 +24,18 @@ namespace Kurs.Controllers
 
         // GET: api/Roles/5
         [ResponseType(typeof(Kurs.Admin.Repository.Role))]
-        public IHttpActionResult GetRole(int id)
+        public IHttpActionResult GetRole(int id, string name = "")
         {
-            Role role = db.Roles.Find(id);
+            Role role = null;
+            if (id == 0)
+            {
+                role = db.Roles.FirstOrDefault(it => it.Name == name);
+            }
+            else
+            {
+                role = db.Roles.Find(id);
+            }
+            
             if (role == null)
             {
                 return NotFound();
