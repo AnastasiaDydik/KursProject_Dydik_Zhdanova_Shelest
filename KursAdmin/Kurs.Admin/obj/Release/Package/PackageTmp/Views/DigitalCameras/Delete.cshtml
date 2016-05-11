@@ -1,0 +1,43 @@
+﻿@model Kurs.Admin.Models.DigitalCameraViewModel
+
+@{
+    ViewBag.Title = "Удалить цифровую камеру";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Удалить цифровую камеру</h2>
+
+<h3>Вы уверены, что хотите удалить этот элемент?</h3>
+<div>
+    <h4>Цифровая камера</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Width)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

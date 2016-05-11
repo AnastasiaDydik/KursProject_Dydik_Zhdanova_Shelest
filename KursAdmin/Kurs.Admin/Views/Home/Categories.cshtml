@@ -1,0 +1,13 @@
+﻿@model IEnumerable<SelectListItem>
+@{ 
+    Layout = null;
+}
+<h2>Категории<span></span></h2>
+<div class="box-content">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li><a href="@Url.Action("Index", "Home", new { cat = item.Value })">@item.Text</a></li>
+        }
+    </ul>
+</div>

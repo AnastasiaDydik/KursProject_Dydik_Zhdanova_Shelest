@@ -1,0 +1,33 @@
+﻿@model HtmlString
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Статистика продаже товара по категориям</h2>
+<canvas id="myChart" width="400" height="400"></canvas>
+
+@section Scripts{
+    <script src="~/Scripts/Chart.min.js"></script>
+<script>
+    var doughnutData = [@Model
+    ];
+
+    var doughnutOptions = {
+        segmentShowStroke: true,
+        segmentStrokeColor: "#fff",
+        segmentStrokeWidth: 2,
+        percentageInnerCutout: 45, // This is 0 for Pie charts
+        animationSteps: 100,
+        animationEasing: "easeOutBounce",
+        animateRotate: true,
+        animateScale: false,
+        responsive: true,
+    };
+
+
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myNewChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
+</script>    
+}
+

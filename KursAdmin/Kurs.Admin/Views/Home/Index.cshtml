@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Kurs.Admin.Models.DeviceListItemViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.Partial("_Slider")
+
+<div class="products">
+    <div class="cl">&nbsp;</div>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="/Devices/Details/@item.Id"><img src="@item.Image" alt=""></a>
+                <div class="product-info">
+                    <h3>@item.Model</h3>
+                    <div class="product-desc">
+                        <p>Размер:@item.Width x @item.Heigth<br>Цвет:@item.Color</p>
+                        <strong class="price">@item.Price</strong>
+                    </div>
+                </div>
+            </li>
+        }
+
+        
+       
+    </ul>
+    <div class="cl">&nbsp;</div>
+</div>

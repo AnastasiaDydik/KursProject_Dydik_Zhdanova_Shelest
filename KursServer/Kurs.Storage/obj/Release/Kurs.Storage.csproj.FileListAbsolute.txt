@@ -1,0 +1,10 @@
+C:\Repository\CSharp\Kurs\Kurs.Storage\bin\Release\Kurs.Storage.dll.config
+C:\Repository\CSharp\Kurs\Kurs.Storage\bin\Release\Kurs.Storage.dll
+C:\Repository\CSharp\Kurs\Kurs.Storage\bin\Release\Kurs.Storage.pdb
+C:\Repository\CSharp\Kurs\Kurs.Storage\bin\Release\EntityFramework.dll
+C:\Repository\CSharp\Kurs\Kurs.Storage\bin\Release\EntityFramework.SqlServer.dll
+C:\Repository\CSharp\Kurs\Kurs.Storage\bin\Release\EntityFramework.xml
+C:\Repository\CSharp\Kurs\Kurs.Storage\bin\Release\EntityFramework.SqlServer.xml
+C:\Repository\CSharp\Kurs\Kurs.Storage\obj\Release\Kurs.Storage.csprojResolveAssemblyReference.cache
+C:\Repository\CSharp\Kurs\Kurs.Storage\obj\Release\Kurs.Storage.dll
+C:\Repository\CSharp\Kurs\Kurs.Storage\obj\Release\Kurs.Storage.pdb

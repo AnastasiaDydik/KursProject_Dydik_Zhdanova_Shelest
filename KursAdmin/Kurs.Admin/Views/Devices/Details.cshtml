@@ -1,0 +1,97 @@
+﻿@model Kurs.Admin.Models.DeviceListItemViewModel
+
+@{
+    ViewBag.Title = "Просмотрустройства";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Просмотр устройства</h2>
+
+<div>
+    <h4>Устройство</h4>
+    <hr />
+    <table>
+        <tr>
+            <td><img src="@Model.Image" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Model)</td>
+            <td>@Html.DisplayFor(model => model.Model)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Heigth)</td>
+            <td>@Html.DisplayFor(model => model.Heigth)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Width)</td>
+            <td>@Html.DisplayFor(model => model.Width)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Price)</td>
+            <td>@Html.DisplayFor(model => model.Price)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Ram)</td>
+            <td>@Html.DisplayFor(model => model.Ram)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Memory)</td>
+            <td>@Html.DisplayFor(model => model.Memory)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Info)</td>
+            <td>@Html.DisplayFor(model => model.Info)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.TotalCount)</td>
+            <td>@Html.DisplayFor(model => model.TotalCount)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.FreeCount)</td>
+            <td>@Html.DisplayFor(model => model.FreeCount)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Category)</td>
+            <td>@Html.DisplayFor(model => model.Category)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Color)</td>
+            <td>@Html.DisplayFor(model => model.Color)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Maker)</td>
+            <td>@Html.DisplayFor(model => model.Maker)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.ScreenResolution)</td>
+            <td>@Html.DisplayFor(model => model.ScreenResolution)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Processor)</td>
+            <td>@Html.DisplayFor(model => model.Processor)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.OperatingSystem)</td>
+            <td>@Html.DisplayFor(model => model.OperatingSystem)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.DigitalCamera)</td>
+            <td>@Html.DisplayFor(model => model.DigitalCamera)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Country)</td>
+            <td>@Html.DisplayFor(model => model.Country)</td>
+        </tr>
+    </table>
+
+
+
+ 
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@Html.Action("Reviews", "Reviews", new { deviceId = Model.Id })

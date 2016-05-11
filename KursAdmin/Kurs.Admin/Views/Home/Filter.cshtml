@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SelectListItem>
+@{
+    Layout = null;
+}
+
+
+<div class="box search">
+    <h2>Поиск по:<span></span></h2>
+    <div class="box-content">
+        <form action="/" method="get">
+
+            <label>Ключевое слово</label>
+            <input type="text" class="field" name="keyword" />
+
+            <label>Категория</label>
+            <select class="field" name="cat">
+                <option value="">-- Выберите категорию --</option>
+                @foreach (var item in Model)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+
+            <div class="inline-field">
+                <label>Цена c:</label>
+                <input type="text" class="field small-field" name="minPrice"/>
+                <label>по:</label>
+                <input type="text" class="field small-field" name="maxPrice" />
+            </div>
+
+            <input type="submit" class="search-submit" value="Поиск" />
+
+        </form>
+    </div>
+</div>

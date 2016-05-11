@@ -1,0 +1,37 @@
+﻿@model Kurs.Admin.Models.UserFormViewModel
+
+@{
+    ViewBag.Title = "Удалить пользователя";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Удалить пользователя</h2>
+
+<h3>Вы уверены, что хотите удалить этот элемент?</h3>
+<div>
+    <h4>Пользователь</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Name)
+        @Html.HiddenFor(m => m.Password)
+        @Html.HiddenFor(m => m.RoleId)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

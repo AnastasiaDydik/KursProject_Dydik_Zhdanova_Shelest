@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Kurs.Admin.Models.DeviceListItemViewModel>
+
+@{
+    ViewBag.Title = "Устройства";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="products">
+    @Html.ActionLink("Создать", "Create", "Devices")
+    <div class="cl">&nbsp;</div>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="/Devices/Details/@item.Id"><img src="@item.Image" alt=""></a>
+                <div class="product-info">
+                    <h3>@item.Model</h3>
+                    <div class="product-desc">
+                        @Html.ActionLink("Редактировать", "Edit", "Devices", new { id = item.Id }, null)<br />
+                        @Html.ActionLink("Удалить", "Delete", "Devices", new { id = item.Id }, null)
+                        <p>Всего:@item.TotalCount<br>Осталось:@item.FreeCount</p>
+                        <strong class="price">@item.Price</strong>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+    <div class="cl">&nbsp;</div>
+</div>

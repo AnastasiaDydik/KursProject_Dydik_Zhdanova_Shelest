@@ -1,0 +1,9 @@
+C:\Repository\CSharp\Kurs\Kurs.Admin.Repository\bin\Debug\Kurs.Admin.Repository.dll
+C:\Repository\CSharp\Kurs\Kurs.Admin.Repository\bin\Debug\Kurs.Admin.Repository.pdb
+C:\Repository\CSharp\Kurs\Kurs.Admin.Repository\bin\Debug\Ninject.dll
+C:\Repository\CSharp\Kurs\Kurs.Admin.Repository\bin\Debug\RestSharp.dll
+C:\Repository\CSharp\Kurs\Kurs.Admin.Repository\bin\Debug\Ninject.xml
+C:\Repository\CSharp\Kurs\Kurs.Admin.Repository\bin\Debug\RestSharp.xml
+C:\Repository\CSharp\Kurs\Kurs.Admin.Repository\obj\Debug\Kurs.Admin.Repository.dll
+C:\Repository\CSharp\Kurs\Kurs.Admin.Repository\obj\Debug\Kurs.Admin.Repository.pdb
+C:\Repository\CSharp\Kurs\Kurs.Admin.Repository\obj\Debug\Kurs.Admin.Repository.csprojResolveAssemblyReference.cache
